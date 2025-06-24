@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 // Guest route
 router.get('/guest', (req, res) => {
     // Handle guest access logic here
-    const token = jwt.sign({ id:"TempUserID", role: "staff", name:"TempUser" }, process.env.JWT_GUEST_EXPIRY, {expiresIn:process.env.JWT_EXPIRY});
+    const token = jwt.sign({ id:"6856f906943eea8bf596ffd9", role: "admin", name:"testting" }, process.env.JWT_GUEST_EXPIRY, {expiresIn:process.env.JWT_EXPIRY});
     res.status(200).json({success: "true", authToken: token});
     
 });
