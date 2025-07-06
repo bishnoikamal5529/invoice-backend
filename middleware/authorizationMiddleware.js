@@ -27,7 +27,7 @@
         const {id:userID, role:userRole, name:userName} =  { ... decoded};    
 
         // check is user exist in the db
-        const userData = await User.find({_id: userID}) 
+        const userData = await User.findById(userID) 
             .then(() => {
                 req.user = userData;  
                 console.log(userData);
