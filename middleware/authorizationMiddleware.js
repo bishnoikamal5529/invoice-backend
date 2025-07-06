@@ -25,10 +25,11 @@
             next(err);
         }
         const {id:userID, role:userRole, name:userName} =  { ... decoded};    
-
+        console.log(userID);
+        
         // check is user exist in the db
-        const userData = await User.findById(userID) 
-            .then(() => {
+        await User.findById(userID) 
+            .then((userData) => {
                 req.user = userData;  
                 console.log(userData);
                       
