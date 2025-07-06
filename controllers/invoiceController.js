@@ -9,6 +9,8 @@ const createInvoice = asyncWrapper(async (req, res) => {
     const userID = req.user[0]._id.toString();
     req.body.issueUser = userID;
 
+    console.log("user id retrieved: " + userID);
+    
     // checking if asked products quantity is not more than in stock
     const productArray = req.body.items;
     const productIds = productArray.map(element => {

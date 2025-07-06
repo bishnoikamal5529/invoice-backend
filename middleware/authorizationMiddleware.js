@@ -18,21 +18,25 @@
     // Extract Jwt Token
     const token = authHeader.split(" ")[1];
 
+    
     //Verify Token and Extract Token Values
     jwt.verify(token, process.env.JWT_SECRET,async function(err, decoded) {
-        if(err){
+        if(err){            
             next(err);
         }
         const {id:userID, role:userRole, name:userName} =  { ... decoded};    
 
         // check is user exist in the db
-        const userData = await User.find({_id: userID});
-        if(!userData){
-            return res.status(400).json({ msg: "User Does Not exist"});
-        }
+        const userData = await User.find({_id: userID}) 
+            .then(() => {
+                req.user = userData;  
+                console.log(userData);
+                      
+                next();
+            }).catch( () => {
+                return res.status(400).json({ msg: "User Does Not exist"});
+            } )
         
-        req.user = userData;
-        next();
       });
 }
 
