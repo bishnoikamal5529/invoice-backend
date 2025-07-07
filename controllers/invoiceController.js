@@ -58,7 +58,7 @@ const getInvoiceById = asyncWrapper(async (req, res) => {
 
 // Update an invoice by ID
 const updateInvoice = asyncWrapper(async (req, res) => {
-    const userID = req.user[0]._id.toString();
+    const userID = req.user._id.toString();
     req.body.issueUser = userID;
     
     const invoice = await Invoice.findByIdAndUpdate(req.params.id, req.body, {
