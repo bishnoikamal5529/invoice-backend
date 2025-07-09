@@ -73,8 +73,6 @@ app.use('/api/v1/invoice', invoiceRoutes);
 const customerRoutes = require('./Routes/customerRoutes');
 app.use('/api/v1/customer', customerRoutes);
 
-app.use(roleLevelAccessMiddleware);
-
 // Product Routes
 const productRoutes = require('./Routes/productRoutes');
 app.use('/api/v1/product', productRoutes);
@@ -82,6 +80,8 @@ app.use('/api/v1/product', productRoutes);
 // Supplier Routes
 const supplierRoutes = require('./Routes/supplierRoutes');
 app.use('/api/v1/supplier', supplierRoutes);
+
+app.use(roleLevelAccessMiddleware);
 
 // User Routes
 const userRoutes = require('./Routes/userRoutes');
