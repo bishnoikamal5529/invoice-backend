@@ -18,15 +18,20 @@ const createUser = asyncWrapper(async (req, res) => {
 // Get all users
 const getUsers = asyncWrapper(async (req, res) => {
     const userData = await User.find();
-    const users = {
-        name: userData.name,
-        email: userData.email,
-        _id: userData._id,
-        role: userData.role,
-        phone: userData.phone,
-        isActive: userData.isActive
-    } 
-    res.status(200).json(users);
+    
+    let user = [];
+    for(let i = 0; i< userData.length; i++){
+        console.log(userData[i]);
+        
+        user[i] = { 
+            name: userData[i].name,
+            email: userData[i].email,
+            role: userData[i].role,
+            phone: userData[i].phone,
+            isActive: userData[i].isActive, 
+            password: ""};
+    }
+    res.status(200).json(user);
 });
 
 // Get a single user by ID
@@ -36,15 +41,6 @@ const getUserById = asyncWrapper(async (req, res) => {
     if (!userData) {
         return res.status(404).json({ message: 'User not found' });
     }
-    
-    const user = {
-        name: userData.name,
-        email: userData.email,
-        _id: userData._id,
-        role: userData.role,
-        phone: userData.phone,
-        isActive: userData.isActive
-    } 
     
     res.status(200).json(user);
 });
