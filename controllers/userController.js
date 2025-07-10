@@ -21,7 +21,6 @@ const getUsers = asyncWrapper(async (req, res) => {
     
     let user = [];
     for(let i = 0; i< userData.length; i++){
-        console.log(userData[i]);
         
         user[i] = { 
             name: userData[i].name,
