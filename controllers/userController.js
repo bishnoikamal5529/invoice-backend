@@ -21,8 +21,8 @@ const getUsers = asyncWrapper(async (req, res) => {
     
     let user = [];
     for(let i = 0; i< userData.length; i++){
-    
         user[i] = { 
+            _id: userData[i]._id,
             name: userData[i].name,
             email: userData[i].email,
             role: userData[i].role,
