@@ -6,7 +6,6 @@ const asyncWrapper = require('../utils/asyncWrapper');
 // Create a new invoice
 const createInvoice = asyncWrapper(async (req, res) => {  
     // Exxtracting user if provided in req.user through auth token
-    
     const userID = req.user._id.toString();
     req.body.issueUser = userID;
 

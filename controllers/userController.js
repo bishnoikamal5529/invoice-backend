@@ -20,6 +20,7 @@ const getUsers = asyncWrapper(async (req, res) => {
     const userData = await User.find();
     
     let user = [];
+  
     for(let i = 0; i< userData.length; i++){        
 
         if(userData[i]._id == '6856f5a65c2dff985ed073d5'){
@@ -34,7 +35,6 @@ const getUsers = asyncWrapper(async (req, res) => {
                 isActive: userData[i].isActive, 
                 password: ""});
         }
-        
     }
 
     res.status(200).json(user);
