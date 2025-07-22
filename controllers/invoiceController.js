@@ -13,19 +13,19 @@ const createInvoice = asyncWrapper(async (req, res) => {
     
     // checking if asked products quantity is not more than in stock
     const productArray = req.body.items;
-    const productIds = productArray.map(element => {
-        return element.product;
+    const productSkus = productArray.map(element => {
+        return element.productSku;
     });
     
-    // get all the products by productIds array
-    const products = await Product.find({ _id: {$in: productIds } });
+    // get all the products by productSkus array
+    const products = await Product.find({ sku: {$in: productSkus } });
     
     //check if asked quantity in invoice is not more that currently in stock
     let inStock = true;
     for(let i=0; i<productArray.length; i++){
         if(productArray[i].quantity > products[i].quantityInStock){
             inStock = false;
-            return res.status(500).json({message: "there is not enough quantityInStock for this product", productId: productArray[i].product});
+            return res.status(500).json({message: "there is not enough quantityInStock for this product", productName: productArray[i].productName});
         }
     }
 
